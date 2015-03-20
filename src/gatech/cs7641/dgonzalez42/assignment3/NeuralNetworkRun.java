@@ -15,10 +15,10 @@ public class NeuralNetworkRun
 	private static double learningRate = 0.3;
 	private static double momentumRate = 0.2;
 	private static int trainingTime = 500;
-	private static int minNeuronCount = 4;
-	private static int maxNeuronCount = 20;
-	private static int minNeuronCount2 = 4;
-	private static int maxNeuronCount2 = 20;
+	private static int minNeuronCount = 20;
+	private static int maxNeuronCount = 40;
+	private static int minNeuronCount2 = 20;
+	private static int maxNeuronCount2 = 40;
 		
 	private static DecimalFormat df = new DecimalFormat("0.0000");
 	
@@ -36,7 +36,7 @@ public class NeuralNetworkRun
 				trainAndTest(trainingDataset, testingDataset, i, j);
 			}
 		}
-
+		/*
 		// Cross Validation
 		for (int i = minNeuronCount; i <= maxNeuronCount; i++)
 		{
@@ -49,6 +49,7 @@ public class NeuralNetworkRun
 				crossValidation(fullTrainingDataset, i, j);
 			}
 		}
+		*/
 	}
 	
 	public void trainAndTest(String trainingDataset, String testingDataset, int layer1, int layer2) throws Exception

@@ -14,5 +14,8 @@ public class NNTrainAndTest {
 		String testingDataset = "dataset/adult_randomized_bottom_25pct_clean.arff";
 		
 		NeuralNetworkRun ann = new NeuralNetworkRun(fullTrainingDataset, trainingDataset, testingDataset);
+		
+		
+		// ClusteringRun c = new ClusteringRun(fullTrainingDataset); 
 	}
 }
