@@ -16,9 +16,9 @@ public class NeuralNetworkRun
 	private static double momentumRate = 0.2;
 	private static int trainingTime = 500;
 	private static int minNeuronCount = 4;
-	private static int maxNeuronCount = 10;
+	private static int maxNeuronCount = 20;
 	private static int minNeuronCount2 = 4;
-	private static int maxNeuronCount2 = 10;
+	private static int maxNeuronCount2 = 20;
 		
 	private static DecimalFormat df = new DecimalFormat("0.0000");
 	
@@ -36,7 +36,7 @@ public class NeuralNetworkRun
 				trainAndTest(trainingDataset, testingDataset, i, j);
 			}
 		}
-		
+
 		// Cross Validation
 		for (int i = minNeuronCount; i <= maxNeuronCount; i++)
 		{

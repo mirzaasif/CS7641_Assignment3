@@ -9,9 +9,9 @@ public class NNTrainAndTest {
 
 	public static void main(String[] args) throws Exception 
 	{
-		String fullTrainingDataset = "dataset/adult_randomized.arff";
-		String trainingDataset = "dataset/adult_randomized_top_75pct.arff";
-		String testingDataset = "dataset/adult_randomized_bottom_25pct.arff";
+		String fullTrainingDataset = "dataset/adult_randomized_clean.arff";
+		String trainingDataset = "dataset/adult_randomized_top_75pct_clean.arff";
+		String testingDataset = "dataset/adult_randomized_bottom_25pct_clean.arff";
 		
 		NeuralNetworkRun ann = new NeuralNetworkRun(fullTrainingDataset, trainingDataset, testingDataset);
 	}
