@@ -14,8 +14,11 @@ public class NNTrainAndTest {
 		String testingDataset = "dataset/adult_randomized_bottom_25pct_clean.arff";
 		
 		NeuralNetworkRun ann = new NeuralNetworkRun(fullTrainingDataset, trainingDataset, testingDataset);
+				
+		KMeansClusteringRun kmc = new KMeansClusteringRun(fullTrainingDataset); 
+		KMeansClusterToClassComparison kmctc = new KMeansClusterToClassComparison(fullTrainingDataset);
 		
-		
-		// ClusteringRun c = new ClusteringRun(fullTrainingDataset); 
+		EMClusteringRun emc = new EMClusteringRun(fullTrainingDataset); 
+		EMClusterToClassComparison emctc = new EMClusterToClassComparison(fullTrainingDataset);
 	}
 }
