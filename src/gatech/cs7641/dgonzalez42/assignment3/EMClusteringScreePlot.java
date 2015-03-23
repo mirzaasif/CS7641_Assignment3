@@ -2,23 +2,28 @@ package gatech.cs7641.dgonzalez42.assignment3;
 
 import java.text.DecimalFormat;
 
+import weka.clusterers.ClusterEvaluation;
+import weka.clusterers.EM;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-import weka.clusterers.EM;
-import weka.clusterers.ClusterEvaluation;
-import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.Remove;
 
-public class EMClusteringRun 
+public class EMClusteringScreePlot 
 {
 	private static DecimalFormat df = new DecimalFormat("0.0000");
 
-	public EMClusteringRun(String fullTrainingDataset) throws Exception 
+	public EMClusteringScreePlot(String fullTrainingDataset) throws Exception 
 	{
-		kMeans(fullTrainingDataset);
+		// Cluster	
+		System.out.println("*** EM Clustering Scree Plot ***");
+		
+		for (int k=1; k <= 25; k++)
+		{
+			double sse = plot(k, fullTrainingDataset);
+			System.out.println(df.format(sse));
+		}
 	}
 
-	public void kMeans(String fullTrainingDataset) throws Exception
+	public double plot(int k, String fullTrainingDataset) throws Exception
 	{
 		// Cluster	
 		System.out.println("*** EM Clustering ***");
@@ -28,12 +33,6 @@ public class EMClusteringRun
 		Instances full = dsFull.getDataSet(); 
 
 		// full.setClassIndex(full.numAttributes() - 1);
-		
-		String[] removeOptions = new String[] { "-R",  Integer.toString(full.numAttributes())};
-		Remove remove = new Remove();
-		remove.setOptions(removeOptions);
-		remove.setInputFormat(full);
-		Instances fullFiltered = Filter.useFilter(full, remove);
 
 		// Build Clusterer
 		// String[] options = new String[2];
@@ -42,15 +41,15 @@ public class EMClusteringRun
 		EM clusterer = new EM();   // new instance of clusterer
 		clusterer.setSeed(100);
 		clusterer.setMinStdDev(1E-6);
-		clusterer.setNumClusters(-1);
+		clusterer.setNumClusters(k);
 		clusterer.setMaxIterations(100);
 		//clusterer.setOptions(options);     // set the options
-		clusterer.buildClusterer(fullFiltered);    // build the clusterer
+		clusterer.buildClusterer(full);    // build the clusterer
 
 		// Evaluate Clusterer
 		ClusterEvaluation eval = new ClusterEvaluation();
 		eval.setClusterer(clusterer);                                   // the cluster to evaluate
-		eval.evaluateClusterer(fullFiltered);                                // data to evaluate the clusterer on
+		eval.evaluateClusterer(full);                                // data to evaluate the clusterer on
 
 		System.out.println(clusterer.getSeed());
 		System.out.println(clusterer.getMinStdDev());
@@ -60,6 +59,8 @@ public class EMClusteringRun
 
 		System.out.println("# of clusters: " + eval.getNumClusters());  // output # of clusters
 		System.out.println(eval.clusterResultsToString());
+		
+		// return clusterer.getSquaredError();
+		return 0.0;
 	}
-
 }
