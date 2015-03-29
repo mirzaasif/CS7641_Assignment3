@@ -27,6 +27,8 @@ public class PrincipalComponentsAnalysisFilter
 		Instances pcaFiltered = Filter.useFilter(full, pc);
 		
 		System.out.println(pc.getMaximumAttributeNames());
+		
+		System.out.println(pcaFiltered);
 	}
 
 }

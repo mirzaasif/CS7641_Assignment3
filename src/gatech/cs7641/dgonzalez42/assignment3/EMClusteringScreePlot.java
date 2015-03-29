@@ -6,6 +6,9 @@ import weka.clusterers.ClusterEvaluation;
 import weka.clusterers.EM;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Normalize;
+import weka.filters.unsupervised.attribute.Remove;
 
 public class EMClusteringScreePlot 
 {
@@ -25,42 +28,47 @@ public class EMClusteringScreePlot
 
 	public double plot(int k, String fullTrainingDataset) throws Exception
 	{
-		// Cluster	
-		System.out.println("*** EM Clustering ***");
-
-		// DataSource dsTrain = new DataSource("dataset/weather.numeric.arff");
 		DataSource dsFull = new DataSource(fullTrainingDataset);
 		Instances full = dsFull.getDataSet(); 
 
-		// full.setClassIndex(full.numAttributes() - 1);
+		// Remove class label
+		String[] removeOptions = new String[] { "-R",  Integer.toString(full.numAttributes())};
+		Remove remove = new Remove();
+		remove.setOptions(removeOptions);
+		remove.setInputFormat(full);
+		Instances fullFiltered = Filter.useFilter(full, remove);
+		
+		// Normalize numeric attributes
+		Normalize normalize = new Normalize();
+		normalize.setInputFormat(fullFiltered);	
+		Instances removeAndNormalizedFiltered = Filter.useFilter(fullFiltered, normalize);
 
 		// Build Clusterer
-		// String[] options = new String[2];
-		//options[0] = "-A";                 // max. iterations
-		//options[1] = "weka.core.EuclideanDistance -R first-last";
-		EM clusterer = new EM();   // new instance of clusterer
+		EM clusterer = new EM();
 		clusterer.setSeed(100);
 		clusterer.setMinStdDev(1E-6);
 		clusterer.setNumClusters(k);
 		clusterer.setMaxIterations(100);
-		//clusterer.setOptions(options);     // set the options
-		clusterer.buildClusterer(full);    // build the clusterer
+		clusterer.buildClusterer(removeAndNormalizedFiltered);
 
 		// Evaluate Clusterer
 		ClusterEvaluation eval = new ClusterEvaluation();
-		eval.setClusterer(clusterer);                                   // the cluster to evaluate
-		eval.evaluateClusterer(full);                                // data to evaluate the clusterer on
+		eval.setClusterer(clusterer);
+		eval.evaluateClusterer(removeAndNormalizedFiltered);
 
+		// Results
+		/*
 		System.out.println(clusterer.getSeed());
 		System.out.println(clusterer.getMinStdDev());
 		System.out.println(clusterer.getNumClusters());
 		System.out.println(clusterer.getMaxIterations());
 		System.out.println(clusterer.getOptions().toString());
-
-		System.out.println("# of clusters: " + eval.getNumClusters());  // output # of clusters
-		System.out.println(eval.clusterResultsToString());
 		
-		// return clusterer.getSquaredError();
-		return 0.0;
+		System.out.println(df.format(eval.getLogLikelihood()));
+		System.out.println("# of clusters: " + eval.getNumClusters());
+		System.out.println(eval.clusterResultsToString());
+		*/ 
+		
+		return eval.getLogLikelihood();
 	}
 }
