@@ -25,15 +25,15 @@ public class NNTrainAndTest {
 		KMeansClusteringRun kmc = new KMeansClusteringRun(fullTrainingIrisDataset, 3); 
 		KMeansClusteringScreePlot kmsp = new KMeansClusteringScreePlot(fullTrainingIrisDataset); 
 		KMeansClusterToClassComparison kmctc = new KMeansClusterToClassComparison(fullTrainingIrisDataset, 3);
-		*/
+		
 		EMClusteringRun emc = new EMClusteringRun(fullTrainingIrisDataset, -1); 
 		EMClusteringScreePlot emsp = new EMClusteringScreePlot(fullTrainingIrisDataset);
 		EMClusteringRun emc2 = new EMClusteringRun(fullTrainingIrisDataset, 3); 
 		EMClusterToClassComparison emctc = new EMClusterToClassComparison(fullTrainingIrisDataset, 3);
+		*/
 		
-		
-		
-		String fullTrainingTitanicDataset = "dataset/titanic.randomized.arff";
+		// Titanic Dataset
+		//String fullTrainingTitanicDataset = "dataset/titanic.randomized.arff";
 		/*
 		//KMeansClusteringRun kmcT = new KMeansClusteringRun(fullTrainingTitanicDataset);
 		//KMeansClusteringScreePlot kmspT = new KMeansClusteringScreePlot(fullTrainingTitanicDataset);
@@ -44,6 +44,28 @@ public class NNTrainAndTest {
 		//PrincipalComponentsAnalysisRun pcar = new PrincipalComponentsAnalysisRun(fullTrainingDataset);
 		// PrincipalComponentsAnalysisRun pcarT = new PrincipalComponentsAnalysisRun(fullTrainingTitanicDataset);
 		
+		
+		// Iris Dataset
+		// NormalizeArffFile nf = new NormalizeArffFile(fullTrainingDataset);
+		
+		
+		// NeuralNetworkRun ann = new NeuralNetworkRun(fullTrainingDataset, trainingDataset, testingDataset);
+		/*
+		KMeansClusteringRun kmc = new KMeansClusteringRun(fullTrainingIrisDataset, 3); 
+		KMeansClusteringScreePlot kmsp = new KMeansClusteringScreePlot(fullTrainingIrisDataset); 
+		KMeansClusterToClassComparison kmctc = new KMeansClusterToClassComparison(fullTrainingIrisDataset, 3);
+		
+		EMClusteringRun emc = new EMClusteringRun(fullTrainingIrisDataset, -1); 
+		EMClusteringScreePlot emsp = new EMClusteringScreePlot(fullTrainingIrisDataset);
+		EMClusteringRun emc2 = new EMClusteringRun(fullTrainingIrisDataset, 3); 
+		EMClusterToClassComparison emctc = new EMClusterToClassComparison(fullTrainingIrisDataset, 3);
+		*/	
+		// PCA
+		// PrincipalComponentsAnalysisFilter pcafI = new PrincipalComponentsAnalysisFilter(fullTrainingIrisDataset);
+		PrincipalComponentsAnalysisRun pcarI = new PrincipalComponentsAnalysisRun(fullTrainingIrisDataset);
+		// PrincipalComponentsAnalysisRun pcarT = new PrincipalComponentsAnalysisRun(fullTrainingTitanicDataset);
+				
+				
 		
 	}
 }
