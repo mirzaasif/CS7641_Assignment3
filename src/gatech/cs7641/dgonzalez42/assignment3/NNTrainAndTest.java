@@ -14,6 +14,8 @@ public class NNTrainAndTest {
 		String testingDataset = "dataset/adult_randomized_bottom_25pct_clean.arff";
 		
 		String fullTrainingIrisDataset = "dataset/iris_randomized.arff";
+		
+		String pcaReducedDataset = "dataset/iris_randomized_PCA_out.arff";
 		// String trainingIrisDataset = "dataset/adult_randomized_top_75pct_clean.arff";
 		// String testingIsisDataset = "dataset/adult_randomized_bottom_25pct_clean.arff";
 		
@@ -62,10 +64,22 @@ public class NNTrainAndTest {
 		*/	
 		// PCA
 		// PrincipalComponentsAnalysisFilter pcafI = new PrincipalComponentsAnalysisFilter(fullTrainingIrisDataset);
-		PrincipalComponentsAnalysisRun pcarI = new PrincipalComponentsAnalysisRun(fullTrainingIrisDataset);
+		// PrincipalComponentsAnalysisRun pcarI = new PrincipalComponentsAnalysisRun(fullTrainingIrisDataset);
 		// PrincipalComponentsAnalysisRun pcarT = new PrincipalComponentsAnalysisRun(fullTrainingTitanicDataset);
 				
-				
+		// Iris PCA and then Cluster 
+		// KMeansClusteringRun pcakmc = new KMeansClusteringRun(pcaReducedDataset, 3); 
+		// KMeansClusteringScreePlot pcakmsp = new KMeansClusteringScreePlot(pcaReducedDataset); 
+		// KMeansClusterToClassComparison pcakmctc = new KMeansClusterToClassComparison(pcaReducedDataset, 3);
 		
+		// EMClusteringRun emc = new EMClusteringRun(pcaReducedDataset, -1); 
+		EMClusteringScreePlot emsp = new EMClusteringScreePlot(pcaReducedDataset);
+		// EMClusteringRun emc2 = new EMClusteringRun(pcaReducedDataset, 3); 
+		// EMClusterToClassComparison emctc = new EMClusterToClassComparison(pcaReducedDataset, 3);
+		
+		// PCA then ANN
+		// NeuralNetworkRun ann2 = new NeuralNetworkRun(fullTrainingDataset, trainingDataset, testingDataset);
+		NeuralNetworkRun ann3 = new NeuralNetworkRun(pcaReducedDataset, pcaReducedDataset, pcaReducedDataset);
+
 	}
 }

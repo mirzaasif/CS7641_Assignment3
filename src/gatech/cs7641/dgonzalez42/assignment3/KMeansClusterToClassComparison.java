@@ -19,7 +19,7 @@ public class KMeansClusterToClassComparison
 		// DataSource dsTrain = new DataSource("dataset/weather.numeric.arff");
 		DataSource dsFull = new DataSource(fullTrainingDataset);
 		Instances full = dsFull.getDataSet(); 
-		
+
 		full.setClassIndex(full.numAttributes() - 1);
 		
 		// Remove class label
