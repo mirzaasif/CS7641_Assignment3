@@ -39,7 +39,7 @@ public class NeuralNetworkRun
 		}
 		*/
 		// Cross Validation
-		crossValidation(fullTrainingDataset, 26, 24);
+		crossValidation(fullTrainingDataset, 10, 0);
 		/*
 		for (int i = minNeuronCount; i <= maxNeuronCount; i++)
 		{
