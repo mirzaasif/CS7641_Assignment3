@@ -8,7 +8,6 @@ import weka.filters.unsupervised.attribute.Remove;
 
 public class PrincipalComponentsAnalysisFilter 
 {
-
 	public PrincipalComponentsAnalysisFilter(String dataset) throws Exception 
 	{
 		pca(dataset);
@@ -30,5 +29,4 @@ public class PrincipalComponentsAnalysisFilter
 		
 		System.out.println(pcaFiltered);
 	}
-
 }
